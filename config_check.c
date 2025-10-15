@@ -1,0 +1,185 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   config_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
+/*   Updated: 2025/10/13 02:53:52 by sabadri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cube.h"
+
+int	is_line_empty(char *s)
+{
+	int	i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	has_map_content(char *s)
+{
+	int	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '1' || s[i] == '0')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	map_checker(t_info *config)
+{
+	int	i = 0;
+	int	in_map = 0;
+
+	while (config->map[i] && is_line_empty(config->map[i]))
+		i++;
+	while (config->map[i])
+	{
+		if (has_map_content(config->map[i]))
+			in_map = 1;
+		else if (in_map && is_line_empty(config->map[i]))
+		{
+			int	j = i + 1;
+			while (config->map[j] && is_line_empty(config->map[j]))
+				j++;
+			if (config->map[j] && has_map_content(config->map[j]))
+				return (printf("ERROR: empty line inside map\n"), 1);
+			break;
+		}
+		i++;
+	}
+	return (0);
+}
+
+
+static int	is_walkable(char c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+static int	is_outside(char **map, int i, int j)
+{
+	if (i < 0 || j < 0)
+		return (1);
+	if (!map[i] || j >= (int)strlen(map[i]))
+		return (1);
+	if (map[i][j] == ' ')
+		return (1);
+	return (0);
+}
+
+int	check_boundaries(t_info *config)
+{
+	char	**map = config->map;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_walkable(map[i][j]))
+			{
+				if (is_outside(map, i - 1, j)
+					|| is_outside(map, i + 1, j)
+					|| is_outside(map, i, j - 1)
+					|| is_outside(map, i, j + 1))
+				{
+					printf("ERROR: map not closed at row %d, col %d\n", i, j);
+					return (1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+bool floor_ceiling_check(t_info *config)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		if (config->ceiling[i] == (int)1e9
+			|| config->ceiling[i] < 0
+			|| config->ceiling[i] > 255)
+			return (true);
+
+		if (config->floor[i] == (int)1e9
+			|| config->floor[i] < 0
+			|| config->floor[i] > 255)
+			return (true);
+	}
+	return (false);
+}
+
+void	free_paths(char **paths, int count)
+{
+	int  i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (paths[i])
+			free(paths[i]);
+		i++;
+	}
+	free(paths);
+}
+
+bool files_check(t_info *config)
+{
+	char	**paths;
+	int		idx;
+
+	paths = malloc(sizeof(char *) * 5);
+	idx = 0;
+	paths[0] = ft_strdup(config->east_path);
+	paths[1] = ft_strdup(config->north_path);
+	paths[2] = ft_strdup(config->west_path);
+	paths[3] = ft_strdup(config->south_path);
+	paths[4] = NULL;
+	while (idx < 4)
+	{
+		int fd = open(paths[idx], O_RDONLY);
+		if (fd < 0)
+		{
+			printf("ERROR: in file %s\n", paths[idx]);
+			return (free_paths(paths, idx), false);
+		}
+		close(fd);
+		idx++;
+	}
+	free_paths(paths, idx);
+	return (true);
+}
+
+int config_check(t_info *config)
+{
+	if (!config)
+		return (1);
+	if (!config->north_path || !config->south_path ||
+		!config->west_path  || !config->east_path || !files_check(config))
+		return (printf("ERROR: missing texture path\n"), 1);
+	if (floor_ceiling_check(config))
+		return (printf("ERROR: floor/ceiling [x] should be n->[0,255]\n"), 1);
+	if (!config->map || !config->map[0])
+		return (printf("ERROR: missing map data\n"), 1);
+	if (map_checker(config))
+		return (1);
+	if (check_boundaries(config))
+		return (1);
+	return (0);
+}
