@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/13 02:16:29 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/18 08:05:43 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ char **add_map_line(char **map, char *line, int *count)
     new_map[*count + 1] = NULL;        // null terminate
 
     if (map)
-        free(map); // free old array (not the strings inside)
-
+        free(map);
     (*count)++;
     return new_map;
 }
