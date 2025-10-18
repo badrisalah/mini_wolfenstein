@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/18 08:08:53 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/18 08:33:28 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,72 @@ static int	is_outside(char **map, int i, int j)
 	return (0);
 }
 
+int	inside_map_spaces(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == ' ')
+			{
+				if (i > 0 && j < (int)strlen(map[i - 1]) && is_walkable(map[i - 1][j]))
+					return (1);
+				if (map[i + 1] && j < (int)strlen(map[i + 1]) && is_walkable(map[i + 1][j]))
+					return (1);
+				if (j > 0 && is_walkable(map[i][j - 1]))
+					return (1);
+				if (map[i][j + 1] && is_walkable(map[i][j + 1]))
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	mark_trailing_empty_lines(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+		i++;
+	i--;
+	while (i >= 0)
+	{
+		j = 0;
+		while (map[i][j] && (map[i][j] == ' ' || map[i][j] == '\n'))
+			j++;
+		if (map[i][j] == '\0')
+		{
+			map[i][0] = 'Z';
+			map[i][1] = '\0';
+		}
+		else
+			break;
+		i--;
+	}
+}
+
 int	check_boundaries(t_info *config)
 {
 	char	**map = config->map;
-	int		i, j;
+	int		i;
+	int		j;
 
+	mark_trailing_empty_lines(map);
+	if (inside_map_spaces(map))
+	{
+		printf("ERROR: space adjacent to walkable tile\n");
+		return (1);
+	}
 	i = 0;
 	while (map[i])
 	{
@@ -91,7 +152,6 @@ int	check_boundaries(t_info *config)
 		{
 			if (is_walkable(map[i][j]))
 			{
-				// Check bounds before accessing neighbors
 				if (i == 0 || !map[i + 1]
 					|| j == 0 || !map[i][j + 1]
 					|| is_outside(map, i - 1, j)
@@ -109,6 +169,8 @@ int	check_boundaries(t_info *config)
 	}
 	return (0);
 }
+
+
 
 
 bool floor_ceiling_check(t_info *config)
