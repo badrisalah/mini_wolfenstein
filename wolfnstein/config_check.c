@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 10:35:11 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:24:34 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ int	check_boundaries(t_info *config)
 		j = 0;
 		while (map[i][j])
 		{
+			if (map[i][j] == 'N' || map[i][j] == 'E' 
+				|| map[i][j] == 'S' || map[i][j] == 'W')
+			{
+				config->headed = map[i][j];
+				config->x = i;
+				config->y = j;
+			}
 			if (is_walkable(map[i][j]))
 			{
 				if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1]

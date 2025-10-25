@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:23:35 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 11:11:34 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:26:07 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	main(int ac, char **av)
 		return (printf("ERROR: input isnt compatible !\n"), 1);
 	if (config_check(&config))
 		return (1);
+	printf("x-> %d y-> %d  headed->%c\n",config.x , config.y, config.headed);
 	return (0);
 }
