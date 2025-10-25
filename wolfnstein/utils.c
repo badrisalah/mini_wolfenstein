@@ -6,19 +6,20 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:37:01 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/07 02:37:27 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 11:10:58 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int has_cub(char *s)
+int	has_cub(char *s)
 {
-    size_t ss;
-    ss = ft_strlen(s);
-    if (ss < 4)
-        return (0);
-    if (!ft_strcmp(".cub", s+ss-4))
-        return (1);
-    return (0);
+	size_t	ss;
+
+	ss = ft_strlen(s);
+	if (ss < 4)
+		return (0);
+	if (!ft_strcmp(".cub", s + ss - 4))
+		return (1);
+	return (0);
 }

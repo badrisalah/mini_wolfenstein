@@ -6,64 +6,72 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 23:36:20 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/08 19:07:40 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 11:27:57 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-    if (!s)
+	if (!s)
 		return (NULL);
-    while (*s)
-    {
-        if (*s == (char)c)
+	while (*s)
+	{
+		if (*s == (char)c)
 			return ((char *)s);
-        s++;
-    }
-    if (c == '\0')
+		s++;
+	}
+	if (c == '\0')
 		return ((char *)s);
-    return (NULL);
+	return (NULL);
 }
 
-char *ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-    if (!s)
+	size_t	s_len;
+	char	*sub;
+	int	i;
+
+	i = 0;
+	s_len = strlen(s);
+	if (!s)
 		return (NULL);
-    size_t s_len = strlen(s);
-    if (start >= s_len)
+	if (start >= 	s_len)
 		return (ft_strdup(""));
-    if (len > s_len - start)
+	if (len > s_len - start)
 		len = s_len - start;
-    char *sub = malloc(len + 1);
-    if (!sub)
+	sub = malloc(len + 1);
+	if (!sub)
 		return (NULL);
-    for (size_t i = 0; i < len; i++)
+	while (i < len)
+	{
 		sub[i] = s[start + i];
-    sub[len] = '\0';
-    return (sub);
+		i++;
+	}
+	sub[len] = '\0';
+	return (sub);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    size_t i;
-	
+	size_t i;
+
 	i = 0;
-    if (n == 0)
-        return (0);
-    while (i < n - 1 && s1[i] && s1[i] == s2[i])
-        i++;
-    return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && s1[i] && s1[i] == s2[i])
+        	i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 int	ft_atoi(const char *s)
 {
-    int n = 0;
-    int sign = 1;
-    while (*s == ' ' || (*s >= 9 && *s <= 13))
+	int n = 0;
+	int sign = 1;
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
 		s++;
-    if (*s == '+' || *s == '-')
+	if (*s == '+' || *s == '-')
 	{
 		if (*s == '-')
 			sign = -1;
@@ -77,16 +85,16 @@ int	ft_atoi(const char *s)
 	return (n * sign);
 }
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-    size_t len = strlen(s);
-    char *copy = malloc(len + 1);
-    if (!copy)
+	size_t len = strlen(s);
+	char *copy = malloc(len + 1);
+	if (!copy)
 		return (NULL);
-    for (size_t i = 0; i < len; i++)
-        copy[i] = s[i];
-    copy[len] = '\0';
-    return (copy);
+	for (size_t i = 0; i < len; i++)
+        	copy[i] = s[i];
+	copy[len] = '\0';
+	return (copy);
 }
 
 int ft_strcmp(const char *s1, const char *s2)

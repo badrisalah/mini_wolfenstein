@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/18 08:05:43 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 11:11:43 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int parser(int ac, char **av, t_info *config)
 	config->floor[0] = 1e9;
     while ((line = get_next_line(fd)) != NULL)
     {
-		// printf("%s --> [%zu]\n", line, ft_strlen(line));
 		if (!ft_strncmp(line, "NO ", 3))
 		{
 			config->north_path = ft_strdup(line + 3);
