@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 13:33:13 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:43:40 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,31 @@ bool files_check(t_info *config)
 	return (true);
 }
 
+int	all_chars(char **map)
+{
+	int i;
+	int j;
+	int direction;
+
+	direction = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'W' || map[i][j] == 'E'
+				|| map[i][j] == 'S' || map[i][j] == 'N')
+			{
+				direction++;		
+			}
+			j++;
+		}
+		i++;
+	}
+	return (direction != 1);
+}
+
 int config_check(t_info *config)
 {
 	if (!config)
@@ -221,6 +246,8 @@ int config_check(t_info *config)
 	if (map_checker(config))
 		return (1);
 	if (check_boundaries(config))
+		return (1);
+	if (all_chars(config->map))
 		return (1);
 	return (0);
 }
