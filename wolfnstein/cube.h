@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:21:52 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/13 02:34:29 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:20:19 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_info {
 	char		*south_path;
 	char		*west_path;
 	char		*east_path;
+	int			x;
+	int			y;
+	char		headed;
 }   t_info;
 
 //parser

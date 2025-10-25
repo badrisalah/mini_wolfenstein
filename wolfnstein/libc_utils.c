@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 23:36:20 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 11:27:57 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:24:50 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t	s_len;
 	char	*sub;
-	int	i;
+	size_t	i;
 
 	i = 0;
 	s_len = strlen(s);

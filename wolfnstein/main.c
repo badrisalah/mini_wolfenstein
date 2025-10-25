@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:23:35 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 13:26:07 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:33:30 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (printf("need 2 args !\n"), 1);
 	if (parser(ac, av, &config))
-		return (printf("ERROR: input isnt compatible !\n"), 1);
+		return (printf("Error\ninput isnt compatible !\n"), 1);
 	if (config_check(&config))
 		return (1);
-	printf("x-> %d y-> %d  headed->%c\n",config.x , config.y, config.headed);
 	return (0);
 }

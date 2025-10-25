@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 11:11:43 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:21:48 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ char **add_map_line(char **map, char *line, int *count)
     for (int i = 0; i < *count; i++)
         new_map[i] = map[i];
 
-    new_map[*count] = ft_strdup(line); // duplicate current line
-    new_map[*count + 1] = NULL;        // null terminate
-
+    new_map[*count] = ft_strdup(line);
+    new_map[*count + 1] = NULL;
     if (map)
         free(map);
     (*count)++;
@@ -61,13 +60,13 @@ int parser(int ac, char **av, t_info *config)
     
 	char	*line;
 	int		fd;
-	int		k=0;
-
+	int		k;
+	
+	k = 0;
     if (ac < 2)
         return (printf("Error: need a .cub file\n"), 1);
     if (!has_cub(av[1]))
         return (printf("Error: file must end with .cub\n"), 1);
-	// printf("vvv\n");
     fd = open(av[1], O_RDONLY);
     if (fd < 0)
         return (perror("open"), 1);
@@ -79,6 +78,9 @@ int parser(int ac, char **av, t_info *config)
     config->east_path = NULL;
 	config->ceiling[0] = 1e9;
 	config->floor[0] = 1e9;
+	config->headed = '0';
+	config->x = 0;
+	config->y = 0;
     while ((line = get_next_line(fd)) != NULL)
     {
 		if (!ft_strncmp(line, "NO ", 3))

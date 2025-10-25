@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/10/25 13:24:34 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:33:13 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	map_checker(t_info *config)
 			while (config->map[j] && is_line_empty(config->map[j]))
 				j++;
 			if (config->map[j] && has_map_content(config->map[j]))
-				return (printf("ERROR: empty line inside map\n"), 1);
+				return (printf("Error\nempty line inside map\n"), 1);
 			break;
 		}
 		i++;
@@ -127,7 +127,7 @@ int	check_boundaries(t_info *config)
 					|| is_outside(map, i, j - 1)
 					|| is_outside(map, i, j + 1))
 				{
-					printf("ERROR: map not closed at row %d, col %d\n", i, j);
+					printf("Error\nmap not closed at row %d, col %d\n", i, j);
 					return (1);
 				}
 			}
@@ -197,7 +197,7 @@ bool files_check(t_info *config)
 		int fd = open(paths[idx], O_RDONLY);
 		if (fd < 0)
 		{
-			printf("ERROR: in file %s\n", paths[idx]);
+			printf("Error\n in file %s\n", paths[idx]);
 			return (free_paths(paths, idx), false);
 		}
 		close(fd);
@@ -213,11 +213,11 @@ int config_check(t_info *config)
 		return (1);
 	if (!config->north_path || !config->south_path ||
 		!config->west_path  || !config->east_path || !files_check(config))
-		return (printf("ERROR: missing texture path\n"), 1);
+		return (printf("Error\nmissing texture path\n"), 1);
 	if (floor_ceiling_check(config))
-		return (printf("ERROR: floor/ceiling [x] should be n->[0,255]\n"), 1);
+		return (printf("Error\nfloor/ceiling [x] should be n->[0,255]\n"), 1);
 	if (!config->map || !config->map[0])
-		return (printf("ERROR: missing map data\n"), 1);
+		return (printf("Error\nmissing map data\n"), 1);
 	if (map_checker(config))
 		return (1);
 	if (check_boundaries(config))
