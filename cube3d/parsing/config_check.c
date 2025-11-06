@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/06 01:11:52 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:11:47 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int	check_boundaries(t_info *config)
     }
     config->num_rows = 15;
     config->num_cols = 20;
-	printf("%d-----%d\n",config->num_cols,config->num_rows);
 	return (0);
 }
 
@@ -224,6 +223,10 @@ int	all_chars(char **map, t_info *config)
 		j = 0;
 		while (map[i][j])
 		{
+			if (map[i][j] != ' ' && map[i][j] != '0' && map[i][j] != '1'
+				&& map[i][j] != 'W' && map[i][j] != 'E' && map[i][j] != 'S'
+				&& map[i][j] != 'N')
+				return (1);
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'S' || map[i][j] == 'N')
 			{
