@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/05 05:50:13 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:06:21 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,81 +92,6 @@ char	*skipst(char *s)
 	while (s[i] == ' ' || s[i] == '\t')
 		i++;
 	return (s + i);
-}
-
-int	parse_line(char *line, t_info *config, int *k, int *p, int *mp_cnt, t_garbage **g)
-{
-	line = skipst(line);
-	*p = 1;
-	if (!ft_strncmp(line, "NO", 2))
-	{
-		if (config->check[0] == true)
-			return (1);
-		config->north_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[0] = true;
-	}
-	else if (!ft_strncmp(line, "SO", 2))
-	{
-		if (config->check[1] == true)
-			return (1);
-		config->south_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[1] = true;
-	}
-	else if (!ft_strncmp(line, "WE", 2))
-	{
-		if (config->check[2] == true)
-			return (1);
-		config->west_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[2] = true;
-	}
-	else if (!ft_strncmp(line, "EA", 2))
-	{
-		if (config->check[3] == true)
-			return (1);
-		config->east_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[3] = true;
-	}
-	else if (line[0] == 'F')
-	{
-		if (config->check[4] == true)
-			return (1);
-		if (parse_color(skipst(line + 1), config->floor))
-			return (1);
-		config->check[4] = true;
-	}
-	else if (line[0] == 'C')
-	{	if (config->check[5] == true)
-			return (1);
-		if (parse_color(skipst(line + 1), config->ceiling))
-			return (1);
-		config->check[5] = true;
-	}
-	else if (*k >= 6)
-	{
-		config->map = add_map_line(config->map, line, mp_cnt, g);
-		*p = 0;
-	}
-	if (*p)
-		(*k)++;
-	return (0);
-}
-
-static int	read_cub_file(int fd, t_info *config, t_garbage **g)
-{
-	char	*line;
-	int		k;
-	int		p;
-	int		map_count;
-
-	k = 0;
-	p = 0;
-	map_count = 0;
-	while ((line = get_next_line(fd, g)) != NULL)
-	{
-		if (parse_line(line, config, &k, &p, &map_count, g))
-			return (1);
-	}
-	return (0);
 }
 
 int	parser(int ac, char **av, t_info *config, t_garbage **g)

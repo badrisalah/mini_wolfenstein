@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 09:24:39 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/05 23:57:28 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:15:18 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,6 @@ int	initialize_window(t_game *cub)
 	mlx_loop(cub->mlx_ptr);
 	return (1); // add protections later ===> return 0 in each
 }
-
-// int	main(int ac, char **av)
-// {
-// 	t_game		cub;
-// 	t_info	config;
-	
-// 	if (ac != 2)
-// 		return (printf("need 2 args !\n"), 1);
-// 	if (parser(ac, av, &config))
-// 		return (printf("Error\ninput isnt compatible !\n"), 1);
-// 	if (config_check(&config))
-// 		return (1);
-// 	cub.game_info = &config;
-// 	if (!initialize_window(&cub))
-// 		return (1);
-// 	mlx_destroy_window(cub.mlx_ptr, cub.mlx_win);
-// 	return (0);
-// }
-
 
 int	main(int ac, char **av)
 {

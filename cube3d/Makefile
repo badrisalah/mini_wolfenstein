@@ -1,7 +1,7 @@
 SRCS = main.c tools.c events.c player.c draw_the_map.c ray_casting.c ray_casting_tools.c \
 	horizontal_part_tools.c vertical_part_tools.c parsing/config_check.c parsing/get_line.c \
 	parsing/libc_utils.c parsing/parser.c parsing/utils.c textures.c parsing/libft_garb_collect/ft_atoi.c \
-       parsing/libft_garb_collect/ft_strdup_g.c \
+    parsing/utils2.c parsing/libft_garb_collect/ft_strdup_g.c \
        parsing/libft_garb_collect/ft_strjoin_g.c \
        parsing/libft_garb_collect/ft_substr_g.c \
        parsing/libft_garb_collect/garb_coll_init.c \
