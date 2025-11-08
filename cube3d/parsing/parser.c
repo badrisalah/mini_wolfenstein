@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:06:21 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:23:24 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,6 @@ int	parse_color(char *str, int color[3])
 	}
 	return (0);
 }
-
-char	**add_map_line(char **map, char *line, int *count, t_garbage **garb)
-{
-	char	**new_map;
-	int		i;
-
-	i = 0;
-	new_map = ft_malloc(sizeof(char *) * (*count + 2), garb);
-	if (!new_map)
-		return (NULL);
-	while (i < *count)
-	{
-		new_map[i] = map[i];
-		i++;
-	}
-	new_map[*count] = ft_strdup_g(line, garb);
-	new_map[*count + 1] = NULL;
-	(*count)++;
-	return (new_map);
-}
-
 
 void	init_struct(t_info *config)
 {

@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:21:52 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:14:00 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:27:19 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 # include <errno.h>
 # include <stdbool.h>
 
-typedef struct s_parse_state
+typedef struct s_state
 {
 	int		k;
 	int		p;
 	int		map_cnt;
-}	t_parse_state;
+}	t_state;
 
 typedef struct s_info {
 	int			floor[3];
@@ -51,7 +51,14 @@ typedef struct s_info {
 }   t_info;
 
 //parser
-int	parse_color(char *str, int color[3]);
+
+int		is_walkable(char c);
+int		map_checker(t_info *config);
+int		is_walkable(char c);
+int		is_outside(char **map, int i, int j);
+int		is_line_empty(char *s);
+int		parse_map_line(char *line, t_info *config, t_state *st, t_garbage **g);
+int		parse_color(char *str, int color[3]);
 int		parser(int ac, char **av, t_info *config, t_garbage **g);
 char	*skipst(char *s);
 int		read_cub_file(int fd, t_info *config, t_garbage **g);

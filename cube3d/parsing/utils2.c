@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:03:40 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:23:00 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,7 @@ static int	parse_color_line(char *line, t_info *config)
 	return (0);
 }
 
-static int	parse_map_line(char *line, t_info *config, t_parse_state *st, t_garbage **g)
-{
-	config->map = add_map_line(config->map, line, &st->map_cnt, g);
-	return (0);
-}
-
-static int	parse_line(char *line, t_info *config, t_parse_state *st, t_garbage **g)
+static int	parse_line(char *line, t_info *config, t_state *st, t_garbage **g)
 {
 	line = skipst(line);
 	st->p = 1;
@@ -103,8 +97,8 @@ static int	parse_line(char *line, t_info *config, t_parse_state *st, t_garbage *
 
 int	read_cub_file(int fd, t_info *config, t_garbage **g)
 {
-	char			*line;
-	t_parse_state	st;
+	char	*line;
+	t_state	st;
 
 	st.k = 0;
 	st.p = 0;

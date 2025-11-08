@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = cube
 
-SRCS = config_check.c get_line.c parser.c utils.c utils2.c\
+SRCS = config_check.c get_line.c parser.c utils.c utils2.c utils3.c\
        libft_garb_collect/ft_atoi.c \
        libft_garb_collect/ft_strdup_g.c \
        libft_garb_collect/ft_strjoin_g.c \
