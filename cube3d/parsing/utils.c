@@ -6,11 +6,24 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:37:01 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:23:31 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:58:16 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+int	get_texture_index(char *line)
+{
+	if (!ft_strncmp(line, "NO", 2))
+		return (0);
+	else if (!ft_strncmp(line, "SO", 2))
+		return (1);
+	else if (!ft_strncmp(line, "WE", 2))
+		return (2);
+	else if (!ft_strncmp(line, "EA", 2))
+		return (3);
+	return (-1);
+}
 
 char	**add_map_line(char **map, char *line, int *count, t_garbage **garb)
 {

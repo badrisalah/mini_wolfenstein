@@ -6,44 +6,37 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:23:00 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 18:05:14 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
+static void	set_texture_path(t_info *config, int i, char *path)
+{
+	if (i == 0)
+		config->north_path = path;
+	else if (i == 1)
+		config->south_path = path;
+	else if (i == 2)
+		config->west_path = path;
+	else if (i == 3)
+		config->east_path = path;
+}
+
 static int	parse_texture_line(char *line, t_info *config, t_garbage **g)
 {
-	if (!ft_strncmp(line, "NO", 2))
-	{
-		if (config->check[0])
-			return (1);
-		config->north_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[0] = true;
-	}
-	else if (!ft_strncmp(line, "SO", 2))
-	{
-		if (config->check[1])
-			return (1);
-		config->south_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[1] = true;
-	}
-	else if (!ft_strncmp(line, "WE", 2))
-	{
-		if (config->check[2])
-			return (1);
-		config->west_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[2] = true;
-	}
-	else if (!ft_strncmp(line, "EA", 2))
-	{
-		if (config->check[3])
-			return (1);
-		config->east_path = ft_strdup_g(skipst(line + 2), g);
-		config->check[3] = true;
-	}
-	else
+	int		i;
+	char	*path;
+
+	i = get_texture_index(line);
+	if (i == -1 || config->check[i])
 		return (1);
+	path = ft_strdup_g(skipst(line + 2), g);
+	if (!path)
+		return (1);
+	set_texture_path(config, i, path);
+	config->check[i] = true;
 	return (0);
 }
 
