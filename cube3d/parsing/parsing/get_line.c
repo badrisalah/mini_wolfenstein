@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:28:31 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/05 05:48:25 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/10 11:03:54 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static char	*fill_line_buffer(int fd, char *line, char *buffer, t_garbage **g)
 {
 	int	b_read;
 
-	while ((b_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	b_read = read(fd, buffer, BUFFER_SIZE);
+	while (b_read > 0)
 	{
 		buffer[b_read] = '\0';
 		if (!line)
@@ -25,6 +26,7 @@ static char	*fill_line_buffer(int fd, char *line, char *buffer, t_garbage **g)
 			line = ft_strjoin_g(line, buffer, g);
 		if (ft_strchr(buffer, '\n'))
 			break ;
+		b_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	if (b_read < 0)
 	{
@@ -83,4 +85,3 @@ char	*get_next_line(int fd, t_garbage **g)
 	line_buffer = set_remainder_g(line_buffer, g);
 	return (str);
 }
-

@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 18:05:14 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/12 18:51:39 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,25 @@ static int	parse_line(char *line, t_info *config, t_state *st, t_garbage **g)
 {
 	line = skipst(line);
 	st->p = 1;
-	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
-		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
+	if ((!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
+			|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
+		&& (st->k >= 0 && st->k <= 3))
 	{
 		if (parse_texture_line(line, config, g))
 			return (1);
+		st->k++;
 	}
-	else if (line[0] == 'F' || line[0] == 'C')
+	else if ((line[0] == 'F' || line[0] == 'C') && (st->k >= 4 && st->k <= 5))
 	{
 		if (parse_color_line(line, config))
 			return (1);
+		st->k++;
 	}
 	else if (st->k >= 6)
 	{
 		parse_map_line(line, config, st, g);
 		st->p = 0;
 	}
-	if (st->p)
-		st->k++;
 	return (0);
 }
 
@@ -96,10 +97,12 @@ int	read_cub_file(int fd, t_info *config, t_garbage **g)
 	st.k = 0;
 	st.p = 0;
 	st.map_cnt = 0;
-	while ((line = get_next_line(fd, g)) != NULL)
+	line = get_next_line(fd, g);
+	while (line != NULL)
 	{
 		if (parse_line(line, config, &st, g))
 			return (1);
+		line = get_next_line(fd, g);
 	}
 	return (0);
 }

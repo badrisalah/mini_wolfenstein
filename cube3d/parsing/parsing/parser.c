@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:23:24 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/12 18:10:07 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	parser(int ac, char **av, t_info *config, t_garbage **g)
 		return (perror("open"), 1);
 	init_struct(config);
 	if (read_cub_file(fd, config, g))
-		return (1);
+		return (close(fd), 1);
 	close(fd);
 	return (0);
 }

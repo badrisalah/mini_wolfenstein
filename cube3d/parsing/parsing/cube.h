@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:21:52 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:58:34 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/09 16:46:01 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ typedef struct s_info {
 	char		*east_path;
 	float		x;
 	float		y;
-	int			num_rows;
-	int			num_cols;
+	int			rows;
+	int			cols;
 	char		headed;
-}   t_info;
+}	t_info;
 
 //parser
-
 int		is_walkable(char c);
 int		map_checker(t_info *config);
 int		is_walkable(char c);
@@ -64,6 +63,8 @@ char	*skipst(char *s);
 int		read_cub_file(int fd, t_info *config, t_garbage **g);
 char	**add_map_line(char **map, char *line, int *count, t_garbage **garb);
 int		get_texture_index(char *line);
+int		check_boundaries(t_info *config);
+int		all_chars(char **map, t_info *config);
 //config
 int		config_check(t_info *config);
 

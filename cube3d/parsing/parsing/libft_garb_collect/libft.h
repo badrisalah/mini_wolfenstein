@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:36:35 by monabati          #+#    #+#             */
-/*   Updated: 2025/11/05 05:10:23 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/08 18:10:58 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <limits.h>
-
 
 //garbage_collector func
 typedef struct s_garbage
@@ -55,7 +54,6 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-
 
 //original func that use malloc
 char		*ft_itoa(int n);
