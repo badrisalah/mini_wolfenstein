@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/12 18:08:04 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/13 21:15:19 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,29 @@ bool	floor_ceiling_check(t_info *config)
 	return (false);
 }
 
+int	player_check(char** map)
+{
+	int	i;
+	int	j;
+	int	ans;
+
+	ans = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'S' || map[i][j] == 'N' || map[i][j] == 'W'
+				|| map[i][j] == 'E')
+				ans++;
+			j++;
+		}
+		i++;
+	}
+	return (ans != 1);
+}
+
 int	config_check(t_info *config)
 {
 	if (!config)
@@ -45,6 +68,8 @@ int	config_check(t_info *config)
 		return (printf("Error\nmissing map data\n"), 1);
 	if (map_checker(config))
 		return (printf("Error\nmap error\n"), 1);
+	if (player_check(config->map))
+		return (printf("Error\nno/multiple players\n"), 1);
 	if (check_boundaries(config))
 		return (printf("Error\nboundaries error\n"), 1);
 	if (!all_chars(config->map, config))
