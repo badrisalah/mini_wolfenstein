@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 00:21:52 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/09 16:46:01 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:28:21 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_info {
 	char		*south_path;
 	char		*west_path;
 	char		*east_path;
+	char		*door;
 	float		x;
 	float		y;
 	int			rows;

@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 22:31:17 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/12 18:10:07 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:30:38 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_struct(t_info *config)
 
 	i = 7;
 	config->map = NULL;
+	config->door = NULL;
 	config->north_path = NULL;
 	config->south_path = NULL;
 	config->west_path = NULL;

@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/12 18:51:39 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/15 17:58:32 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ static void	set_texture_path(t_info *config, int i, char *path)
 		config->east_path = path;
 }
 
+char    *texture(char *line)
+{
+    int i;
+
+    i = ft_strlen(line) - 1;
+    while (i >= 0 && line[i] == ' ')
+        i--;
+    line[i + 1] = '\0';
+    return (line);
+}
+
 static int	parse_texture_line(char *line, t_info *config, t_garbage **g)
 {
 	int		i;
@@ -32,7 +43,8 @@ static int	parse_texture_line(char *line, t_info *config, t_garbage **g)
 	i = get_texture_index(line);
 	if (i == -1 || config->check[i])
 		return (1);
-	path = ft_strdup_g(skipst(line + 2), g);
+	line = skipst(line+2);
+	path = ft_strdup_g(texture(line), g);
 	if (!path)
 		return (1);
 	set_texture_path(config, i, path);

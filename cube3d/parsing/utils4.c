@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 18:08:37 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/11 10:10:50 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:18:29 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_valid_map_char(char c)
 {
-	return (c == ' ' || c == '0' || c == '1'
+	return (c == ' ' || c == '0' || c == '1' || c == 'D'
 		|| c == 'W' || c == 'E' || c == 'S' || c == 'N');
 }
 
@@ -41,7 +41,7 @@ int	all_chars(char **map, t_info *config)
 		while (map[i][j])
 		{
 			if (!is_valid_map_char(map[i][j]))
-				return (1);
+				return (0);
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'S' || map[i][j] == 'N')
 				if (!handle_player_pos(config, map[i][j], j, i))
