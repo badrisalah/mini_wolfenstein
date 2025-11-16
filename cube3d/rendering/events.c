@@ -6,11 +6,11 @@
 /*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:08:03 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/01 00:32:38 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/08 13:09:39 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	process_player_rotation(int key_press, t_game *cub)
 {
@@ -20,31 +20,37 @@ void	process_player_rotation(int key_press, t_game *cub)
 		cub->player->rotation_angle -= cub->player->turn_speed;
 }
 
-void	process_player_movement(int key_press, t_game *cub, float *new_x, float *new_y)
+void	process_player_movement(int key_press, t_game *cub,
+		float *new_x, float *new_y)
 {
+	float	angle;
+
+	angle = cub->player->rotation_angle;
 	if (key_press == KEY_W)
 	{
-		*new_x += cos(cub->player->rotation_angle) * cub->player->move_speed;
-		*new_y += sin(cub->player->rotation_angle) * cub->player->move_speed;
+		*new_x += cos(angle)
+			* cub->player->move_speed;
+		*new_y += sin(angle)
+			* cub->player->move_speed;
 	}		
 	else if (key_press == KEY_S)
 	{
-		*new_x -= cos(cub->player->rotation_angle) * cub->player->move_speed;
-		*new_y -= sin(cub->player->rotation_angle) * cub->player->move_speed;    
+		*new_x -= cos(angle) * cub->player->move_speed;
+		*new_y -= sin(angle) * cub->player->move_speed;
 	}
 	else if (key_press == KEY_A)
 	{
-		*new_x += cos(cub->player->rotation_angle - PI / 2) * cub->player->move_speed;
-		*new_y += sin(cub->player->rotation_angle - PI / 2) * cub->player->move_speed;
+		*new_x += cos(angle - PI / 2) * cub->player->move_speed;
+		*new_y += sin(angle - PI / 2) * cub->player->move_speed;
 	}
 	else if (key_press == KEY_D)
 	{
-		*new_x += cos(cub->player->rotation_angle + PI / 2) * cub->player->move_speed;
-		*new_y += sin(cub->player->rotation_angle + PI / 2) * cub->player->move_speed;
+		*new_x += cos(angle + PI / 2) * cub->player->move_speed;
+		*new_y += sin(angle + PI / 2) * cub->player->move_speed;
 	}
 }
 
-int    process_events(int key_press, t_game *cub)
+int	process_events(int key_press, t_game *cub)
 {
 	float	new_x;
 	float	new_y;
@@ -54,13 +60,11 @@ int    process_events(int key_press, t_game *cub)
 	process_player_rotation(key_press, cub);
 	process_player_movement(key_press, cub, &new_x, &new_y);
 	if (key_press == KEY_ESC)
-    {
 		cleanup_and_exit(cub);
-	}
 	if (!wall_collision(cub, new_x, cub->player->y))
-	cub->player->x = new_x;
+		cub->player->x = new_x;
 	if (!wall_collision(cub, cub->player->x, new_y))
-	cub->player->y = new_y;
+		cub->player->y = new_y;
 	return (0);
 }
 
