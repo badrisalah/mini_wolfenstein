@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/15 17:37:46 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/16 21:22:18 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,37 @@ int	player_check(char** map)
 	return (ans != 1);
 }
 
+int	dc(char **mp)
+{
+	int	i;
+	int	j;
+	int	h;
+	int	v;
+
+	i = 0;
+	while (mp[i])
+	{
+		j = 0;
+		while (mp[i][j])
+		{
+			if (mp[i][j] == 'D')
+			{
+				if (i == 0 || !mp[i + 1] || j == 0 || mp[i][j + 1] == '\0')
+					return (printf("Error\nDoor should be surrounded by 1s\n"), 1);
+				h = (mp[i][j - 1] == '1' && mp[i][j + 1] == '1');
+				v = (mp[i - 1][j] == '1' && mp[i + 1][j] == '1');
+				if (!h && !v)
+					return (printf("Error\nDoor should be surrounded by 1s\n"), 1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+
+
 int	config_check(t_info *config)
 {
 	if (!config)
@@ -72,9 +103,9 @@ int	config_check(t_info *config)
 		return (printf("Error\nno/multiple players\n"), 1);
 	if (check_boundaries(config))
 		return (printf("Error\nboundaries error\n"), 1);
-	if (!all_chars(config->map, config))
+	if (!all_chars(config->map, config) || dc(config->map))
 	{
-		printf("Error\nno valid characters");
+		printf("Error\ninvalid characters\n");
 		return (1);
 	}
 	return (0);
