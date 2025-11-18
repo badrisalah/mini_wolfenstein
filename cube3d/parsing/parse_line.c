@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/18 23:42:54 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/19 00:00:47 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static void	set_texture_path(t_info *config, int i, char *path)
 		config->door = path;
 }
 
-char    *texture(char *line)
+char	*texture(char *line)
 {
-    int i;
+	int	i;
 
-    i = ft_strlen(line) - 1;
-    while (i >= 0 && line[i] == ' ')
-        i--;
-    line[i + 1] = '\0';
-    return (line);
+	i = ft_strlen(line) - 1;
+	while (i >= 0 && line[i] == ' ')
+		i--;
+	line[i + 1] = '\0';
+	return (line);
 }
 
 static int	parse_texture_line(char *line, t_info *config, t_garbage **g)
@@ -45,7 +45,7 @@ static int	parse_texture_line(char *line, t_info *config, t_garbage **g)
 	i = get_texture_index(line);
 	if (i == -1 || config->check[i])
 		return (1);
-	line = skipst(line+2);
+	line = skipst(line + 2);
 	path = ft_strdup_g(texture(line), g);
 	if (!path)
 		return (1);

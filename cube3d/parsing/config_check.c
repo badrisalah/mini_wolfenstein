@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 22:55:46 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/16 11:05:57 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:53:46 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	floor_ceiling_check(t_info *config)
 	return (false);
 }
 
-int	player_check(char** map)
+int	player_check(char **map)
 {
 	int	i;
 	int	j;
