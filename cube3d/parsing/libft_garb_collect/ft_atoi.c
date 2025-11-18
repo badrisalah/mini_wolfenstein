@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: monabati <monabati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:05:16 by monabati          #+#    #+#             */
-/*   Updated: 2025/11/16 20:05:28 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/06/17 16:32:52 by monabati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_atoi(const char *str)
 	long	overflow;
 	int		sign;
 
+	if (!str)
+		return (0);
 	i = ft_isspace1(str);
 	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
@@ -54,7 +56,5 @@ int	ft_atoi(const char *str)
 		if (result / 10 != overflow)
 			return (ft_cheker(sign));
 	}
-	if (!i)
-		return (-1);
 	return (result * sign);
 }

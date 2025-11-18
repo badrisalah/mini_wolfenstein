@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:37:01 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/08 17:58:16 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/16 11:07:41 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	get_texture_index(char *line)
 		return (2);
 	else if (!ft_strncmp(line, "EA", 2))
 		return (3);
+	else if (!ft_strncmp(line, "DO", 2))
+		return (4);
 	return (-1);
 }
 

@@ -1,11 +1,11 @@
 F 45,33,37
-NO     textures/simonkraft/talai.xpm
-SO textures/simonkraft/talai.xpm
+NO     textures/simonkraft/7ila9a.xpm
+SO textures/simonkraft/7ila9a.xpm
 
-EA textures/simonkraft/talai.xpm
+EA textures/simonkraft/7ila9a.xpm
 
-C 255,2,1
-WE textures/simonkraft/talai.xpm
+C 2,2,55
+WE textures/simonkraft/7ila9a.xpm
 
 
 111111111111111
@@ -15,7 +15,7 @@ WE textures/simonkraft/talai.xpm
 11001D0000111111
 1000011111000001
 110000111000011
-1110000W0000111
+111000W0000111
 111100000001111
 111110000011111
 111111000111111

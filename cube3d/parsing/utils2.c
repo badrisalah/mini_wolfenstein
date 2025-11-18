@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:00:18 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/16 19:37:57 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/18 23:42:54 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	set_texture_path(t_info *config, int i, char *path)
 		config->west_path = path;
 	else if (i == 3)
 		config->east_path = path;
+	else if (i == 4)
+		config->door = path;
 }
 
 char    *texture(char *line)
@@ -56,19 +58,19 @@ static int	parse_color_line(char *line, t_info *config)
 {
 	if (line[0] == 'F')
 	{
-		if (config->check[4])
+		if (config->check[5])
 			return (1);
 		if (parse_color(skipst(line + 1), config->floor))
 			return (1);
-		config->check[4] = true;
+		config->check[5] = true;
 	}
 	else if (line[0] == 'C')
 	{
-		if (config->check[5])
+		if (config->check[6])
 			return (1);
 		if (parse_color(skipst(line + 1), config->ceiling))
 			return (1);
-		config->check[5] = true;
+		config->check[6] = true;
 	}
 	else
 		return (1);
@@ -80,20 +82,21 @@ static int	parse_line(char *line, t_info *config, t_state *st, t_garbage **g)
 	line = skipst(line);
 	st->p = 1;
 	if ((!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
-			|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
-		&& (st->k >= 0 && st->k <= 5))
+			|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2)
+			|| !ft_strncmp(line, "DO", 2))
+		&& (st->k >= 0 && st->k <= 6))
 	{
 		if (parse_texture_line(line, config, g))
 			return (1);
 		st->k++;
 	}
-	else if ((line[0] == 'F' || line[0] == 'C') && (st->k >= 0 && st->k <= 5))
+	else if ((line[0] == 'F' || line[0] == 'C') && (st->k >= 0 && st->k <= 6))
 	{
 		if (parse_color_line(line, config))
 			return (1);
 		st->k++;
 	}
-	else if (st->k >= 6)
+	else if (st->k >= 7)
 	{
 		parse_map_line(line, config, st, g);
 		st->p = 0;
