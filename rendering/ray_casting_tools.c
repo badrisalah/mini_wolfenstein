@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:21:20 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/08 13:13:43 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/27 23:55:36 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_vert	*vertical_part(t_intercept intercept, t_step steps,
 	t_vert	*vert;
 
 	vert = malloc(sizeof(t_vert));
+	if (!vert)
+		return (NULL);
 	initializing_vertical_part(vert, intercept.x_intercept,
 		intercept.y_intercept);
 	find_vertical_wall_hit(vert, steps, cub, strip_id);

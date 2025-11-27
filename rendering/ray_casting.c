@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 09:31:36 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/22 11:10:08 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/27 23:55:14 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	cast_ray(float ray_angle, int strip_id, t_game *cub, t_ray *rays)
 	t_step		*steps;
 
 	steps = malloc(sizeof(t_step));
+	if (!steps)
+		return ;
 	identifing_ray_facing(ray_angle, strip_id, rays);
 	for_horizontal_intersection(&intercept, rays, strip_id, cub);
 	horizontal_steps(steps, rays, strip_id);
