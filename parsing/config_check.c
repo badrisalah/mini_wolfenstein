@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 21:55:27 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/24 21:56:10 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/25 21:24:25 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	config_check(t_info *config)
 	if (check_boundaries(config))
 		return (printf("Error\nboundaries error\n"), 1);
 	if (!door_check(config->map))
-		return (printf("Error\n Door should be surrounded with 1"), 1);
+		return (printf("Error\nDoor should be surrounded with 1\n"), 1);
 	if (!all_chars(config->map, config))
 	{
 		printf("Error\nno valid characters\n");

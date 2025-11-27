@@ -6,7 +6,7 @@
 /*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 09:25:00 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/22 18:44:07 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:25:09 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 // MAP
 # define TILE_SIZE 64
 // WINDOW
-# define WIDTH 3000
-# define HEIGHT 1500
+# define WIDTH 1000
+# define HEIGHT 1000
 // KEYS
 # define KEY_ESC 65307
 # define KEY_W 119
