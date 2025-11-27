@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:21:20 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/27 23:55:36 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/27 23:56:09 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_hori	*horizontal_part(t_intercept intercept,
 	t_hori	*hori;
 
 	hori = malloc(sizeof(t_hori));
+	if (!hori)
+		return (NULL);
 	initializing_horizontal_part(hori, intercept.x_intercept,
 		intercept.y_intercept);
 	find_horizontal_wall_hit(hori, steps, cub, strip_id);
