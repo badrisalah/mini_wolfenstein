@@ -19,7 +19,7 @@ SRCS = rendering/main.c rendering/tools.c rendering/events.c rendering/player.c 
 MLX_DIR = ./minilibx-linux
 OBJS = ${SRCS:.c=.o}
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I/usr/include -I$(MLX_DIR) -O3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I/usr/include -I$(MLX_DIR) -O3
 LDFLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 
 NAME = cub3D
@@ -30,7 +30,7 @@ $(MLX_DIR)/libmlx.a:
 	@$(MAKE) -C $(MLX_DIR) --no-print-directory > /dev/null
 
 $(NAME): $(MLX_DIR)/libmlx.a $(OBJS)
-	$(CC)  $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC)  -fsanitize=address   $(OBJS) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c cub3d.h parsing/cube.h
 	$(CC) $(CFLAGS) -c $< -o $@

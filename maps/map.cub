@@ -1,11 +1,11 @@
-NO textures/simonkraft/hitler.xpm
-SO textures/simonkraft/hitler.xpm
-WE textures/simonkraft/hitler.xpm
-EA textures/simonkraft/hitler.xpm
-DO textures/simonkraft/door.xpm
+NOtextures/simonkraft/hitler.xpm
+SOtextures/simonkraft/hitler.xpm
+WEtextures/simonkraft/hitler.xpm
+EAtextures/simonkraft/hitler.xpm
+DOtextures/simonkraft/door.xpm
 
-F 0,0,0
-C 0,0,0
+F0,0,0
+C0,0,0
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
@@ -20,3 +20,5 @@ C 0,0,0
 11000001110101011111011110001
 11110111 1110101 101111010001
 11111111 1111111 111111111111
+F0,0,0
+C0,0,0

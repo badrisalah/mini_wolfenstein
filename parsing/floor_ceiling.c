@@ -6,7 +6,7 @@
 /*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 21:54:30 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/24 21:54:51 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/28 19:34:09 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ int	parse_color(char *str, long color[3])
 
 int	parse_color_line(char *line, t_info *config)
 {
-	if (line[0] == 'F' && line[1] == ' ')
+	if (line[0] == 'F')
 	{
 		if (config->check[5])
 			return (1);
-		if (parse_color(line + 2, config->floor))
+		if (parse_color(skipst(line + 1), config->floor))
 			return (1);
 		config->check[5] = true;
 	}
-	else if (line[0] == 'C' && line[1] == ' ')
+	else if (line[0] == 'C')
 	{
 		if (config->check[6])
 			return (1);
-		if (parse_color(line + 2, config->ceiling))
+		if (parse_color(skipst(line + 1), config->ceiling))
 			return (1);
 		config->check[6] = true;
 	}

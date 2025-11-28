@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 21:55:27 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/25 21:24:25 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:36:00 by sabadri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int	config_check(t_info *config)
 		return (printf("Error\nfloor/ceiling [x] should be n->[0,255]\n"), 1);
 	if (!config->map || !config->map[0])
 		return (printf("Error\nmissing map data\n"), 1);
+	if (!all_chars(config->map, config))
+	{
+		printf("Error\ninvalid characters\n");
+		return (1);
+	}
 	if (map_checker(config))
 		return (printf("Error\nmap error\n"), 1);
 	if (player_check(config->map))
@@ -81,10 +86,5 @@ int	config_check(t_info *config)
 		return (printf("Error\nboundaries error\n"), 1);
 	if (!door_check(config->map))
 		return (printf("Error\nDoor should be surrounded with 1\n"), 1);
-	if (!all_chars(config->map, config))
-	{
-		printf("Error\nno valid characters\n");
-		return (1);
-	}
 	return (0);
 }

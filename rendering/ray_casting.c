@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabadri <sabadri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 09:31:36 by amaliari          #+#    #+#             */
-/*   Updated: 2025/11/27 23:55:14 by sabadri          ###   ########.fr       */
+/*   Updated: 2025/11/28 13:41:07 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ void	cast_ray(float ray_angle, int strip_id, t_game *cub, t_ray *rays)
 	for_horizontal_intersection(&intercept, rays, strip_id, cub);
 	horizontal_steps(steps, rays, strip_id);
 	hori = horizontal_part(intercept, *steps, cub, strip_id);
+	if (!hori)
+		return ;
 	for_vertical_intersection(&intercept, rays, strip_id, cub);
 	vertical_steps(steps, rays, strip_id);
 	vert = vertical_part(intercept, *steps, cub, strip_id);
+	if (!vert)
+		return ;
 	smallest_distance_adaptation(*hori, *vert, rays, strip_id);
 	free(steps);
 	free(hori);

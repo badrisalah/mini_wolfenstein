@@ -6,24 +6,11 @@
 /*   By: amaliari <amaliari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 21:29:50 by sabadri           #+#    #+#             */
-/*   Updated: 2025/11/22 09:47:00 by amaliari         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:50:18 by amaliari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	load_overlay(t_game *cub, char *path)
-{
-	cub->overlay = malloc(sizeof(t_texture));
-	cub->overlay->img = mlx_xpm_file_to_image(
-			cub->mlx_ptr, path, &cub->overlay->width, &cub->overlay->height);
-	cub->overlay->addr = mlx_get_data_addr(
-			cub->overlay->img,
-			&cub->overlay->bits_per_pixel,
-			&cub->overlay->line_length,
-			&cub->overlay->endian);
-	cub->overlay->texture_path = path;
-}
 
 void	update_and_draw_overlay(t_game *cub, float current_time)
 {
